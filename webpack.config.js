@@ -1,8 +1,13 @@
-const path = require('path');
+const path = require('path'),
+    webpack = require('webpack');
+
 const config = {
-    entry: ['./src/app.tsx'],
+    entry: {
+        app: path.resolve(__dirname, './src/app.tsx'),
+        vendor: ['react', 'react-dom']
+    },
     output: {
-        filename: 'bundle.js',
+        filename: 'js/[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     devtool: 'source-map',
@@ -14,6 +19,11 @@ const config = {
             { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     }
 }
 
