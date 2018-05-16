@@ -3,20 +3,40 @@ const path = require('path'),
 
 const config = {
     entry: {
-        app: path.resolve(__dirname, './src/app.tsx'),
+        app: [path.resolve(__dirname, './src/app.jsx'), 'webpack-hot-middleware/client'],
         vendor: ['react', 'react-dom']
     },
     output: {
         filename: 'js/[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
+            {
+                test: /\.jsx?$/,
+                loader: 'jsx-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            plugins: ['react-hot-loader/babel'],
+                        },
+                    },
+                    'awesome-typescript-loader',
+                    'jsx-loader'
+                ],
+                exclude: /node_modules/
+            },
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
         ]
     },
@@ -24,7 +44,8 @@ const config = {
         splitChunks: {
             chunks: 'all'
         }
-    }
+    },
+    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()]
 }
 
 module.exports = config;
