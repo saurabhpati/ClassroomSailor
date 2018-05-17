@@ -18,11 +18,6 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                loader: 'jsx-loader',
-                exclude: /node_modules/
-            },
-            {
                 test: /\.tsx?$/,
                 use: [
                     {
@@ -32,9 +27,13 @@ const config = {
                             plugins: ['react-hot-loader/babel'],
                         },
                     },
-                    'awesome-typescript-loader',
-                    'jsx-loader'
+                    'awesome-typescript-loader'
                 ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
                 exclude: /node_modules/
             },
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
