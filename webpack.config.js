@@ -1,7 +1,9 @@
 const path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
+    mode: 'production',
     entry: {
         app: [path.resolve(__dirname, './src/app.js'), 'webpack-hot-middleware/client'],
         vendor: ['react', 'react-dom']
@@ -17,7 +19,7 @@ const config = {
     },
     module: {
         rules: [
-                    {
+            {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
@@ -30,7 +32,10 @@ const config = {
             chunks: 'all'
         }
     },
-    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()]
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(), 
+        new webpack.NoEmitOnErrorsPlugin(), 
+        new HtmlWebpackPlugin({ template: './index.html' })]
 }
 
 module.exports = config;

@@ -1,8 +1,8 @@
     import React from 'react'
 
-    const Hello = () => {
+    const Hello = (props) => {
         return (
-            <h1>Hello from {this.props.compiler} and {this.props.framework} </h1>
+            <h1>Hello from {props.compiler} and {props.framework} </h1>
         );
     }
 

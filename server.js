@@ -5,8 +5,6 @@ const path = require('path'),
     app = express(),
     port = process.env.port || 3000;
 
-
-
 app.use(express.static(path.resolve(__dirname, 'dist')));
 let compiler = webpack(webpackConfig);
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -20,5 +18,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'index.html'));
+    response.sendFile(path.resolve(__dirname, 'dist',   'index.html'));
 });
