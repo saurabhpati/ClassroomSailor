@@ -20,8 +20,6 @@
   "author": "Saurabh Pati",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
     "express": "^4.16.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
