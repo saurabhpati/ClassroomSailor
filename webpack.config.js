@@ -3,7 +3,7 @@ const path = require('path'),
 
 const config = {
     entry: {
-        app: [path.resolve(__dirname, './src/app.js'), 'webpack-hot-middleware/client'],
+        app: [path.resolve(__dirname, './src/app.jsx'), 'webpack-hot-middleware/client'],
         vendor: ['react', 'react-dom']
     },
     output: {
@@ -13,12 +13,26 @@ const config = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.js', '.jsx', '.json']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                use: [
                     {
-                test: /\.(js|jsx)$/,
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            plugins: ['react-hot-loader/babel'],
+                        },
+                    },
+                    'awesome-typescript-loader'
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
             },
