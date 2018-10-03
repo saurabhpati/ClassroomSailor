@@ -1,9 +1,14 @@
-    import React from 'react'
+import React from 'react'
+import Login from './Login/Login';
 
-    const Hello = (props) => {
-        return (
-            <h1>Hello from {props.compiler} and {props.framework} </h1>
+const Hello = (props) => {
+    return (
+        <React.Fragment>
+            <div style={{ width: "30%", margin: 'auto', marginTop: '5%' }}>
+                <Login ></Login>
+            </div>
+        </React.Fragment>
         );
-    }
+}
 
-    export default Hello;   
+export default Hello;   

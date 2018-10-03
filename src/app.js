@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Hello from './components/Hello';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
-    <Hello compiler="Typescript" framework="React" />,
+    <Hello/>,
     document.getElementById('app')
 );
 

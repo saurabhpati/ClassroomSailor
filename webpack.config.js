@@ -6,7 +6,7 @@ const config = {
     mode: 'production',
     entry: {
         app: [path.resolve(__dirname, './src/app.js'), 'webpack-hot-middleware/client'],
-        vendor: ['react', 'react-dom']
+        vendor: ['react', 'react-dom', 'antd']
     },
     output: {
         filename: 'js/[name].bundle.js',
@@ -23,6 +23,10 @@ const config = {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                loader: ['style-loader', 'css-loader']
             },
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
         ]
