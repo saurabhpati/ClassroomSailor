@@ -15,12 +15,12 @@ const config = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.js', '.jsx', '.json']
+        extensions: ['.js', '.json']
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
             },
