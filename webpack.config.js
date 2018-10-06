@@ -5,7 +5,7 @@ const path = require('path'),
 const config = {
     mode: 'production',
     entry: {
-        app: [path.resolve(__dirname, './src/app.js'), 'webpack-hot-middleware/client'],
+        app: [path.resolve(__dirname, './src/index.js')],
         vendor: ['react', 'react-dom', 'antd']
     },
     output: {
@@ -26,7 +26,11 @@ const config = {
             },
             {
                 test: /\.css$/,
-                loader: ['style-loader', 'css-loader']
+                loader: ['style-loader', 'css-loader'],
+                include: [
+                    path.resolve(__dirname, 'node_modules', 'antd', 'dist', 'antd.css'), 
+                    path.resolve(__dirname, 'src', 'styles')
+                ]
             },
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
         ]
@@ -37,9 +41,9 @@ const config = {
         }
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(), 
-        new webpack.NoEmitOnErrorsPlugin(), 
-        new HtmlWebpackPlugin({ template: './index.html' })]
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') })]
 }
 
 module.exports = config;
