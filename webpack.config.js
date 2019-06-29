@@ -5,8 +5,8 @@ const path = require('path'),
 const config = {
     mode: 'production',
     entry: {
-        app: [path.resolve(__dirname, './src/index.js')],
-        vendor: ['react', 'react-dom', 'antd']
+        app: [path.resolve(__dirname, './src/index.tsx')],
+        vendor: ['react', 'react-dom', 'antd', 'react-router-dom']
     },
     output: {
         filename: 'js/[name].bundle.js',
@@ -15,13 +15,13 @@ const config = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.js', '.json']
+        extensions: ['.ts', 'tsx', '.js', '.json', '.less', '.css']
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
+                test: /\.tsx?$/,
+                loader: 'awesome-typescript-loader',
                 exclude: /node_modules/
             },
             {
@@ -32,7 +32,7 @@ const config = {
                     path.resolve(__dirname, 'src', 'styles')
                 ]
             },
-            { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
+            { enforce: 'pre', test: /\.tsx?$/, loader: 'source-map-loader' }
         ]
     },
     optimization: {

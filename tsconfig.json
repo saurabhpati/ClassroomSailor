@@ -1,0 +1,18 @@
+{
+    "include": [
+        "src/*"
+    ],
+    "compilerOptions": {
+        "target": "es5",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "es5",
+            "scripthost",
+            "es2015",
+            "es2017"
+        ],
+        "experimentalDecorators": true
+    }
+}
